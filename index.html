@@ -3,41 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주인장의 사랑했던 것들</title>
+    <meta name="description" content="아름다운 공간에서 다양한 낭만 장소를 탐색하세요.">
+    <title>아름다운 공간</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>주인장의 사랑했던 것들 . .</h1>
+        <h1>아름다운 공간</h1>
         <div class="search-container">
-            <input type="text" id="search" placeholder="장소 검색..." aria-label="장소 검색">
-            <select id="category" aria-label="카테고리 선택">
+            <input type="text" id="search" class="search-input" placeholder="장소 검색..." aria-label="장소 검색">
+            <select id="category" class="search-select" aria-label="카테고리 선택">
                 <option value="">모든 낭만</option>
                 <option value="식당">식당</option>
                 <option value="카페">카페</option>
                 <option value="풍경">풍경</option>
             </select>
         </div>
-        <div id="weather"></div>
-        <div id="message"></div>
-        <button id="updateButton" onclick="updateWeather()">날씨 업데이트</button>
+        <div id="weather" class="weather-info" aria-live="polite"></div>
+        <div id="message" class="message-info" aria-live="polite"></div>
+        <button id="updateButton" class="update-button" aria-label="날씨 업데이트" onclick="updateWeather()">날씨 업데이트</button>
     </header>
 
     <main>
-        <div id="place-list" class="place-list"></div>
+        <div class="description">
+            <h2>운영자 추천 장소</h2>
+            <p>아름다운 공간에서 다양한 카페, 식당, 그리고 풍경을 탐험해보세요. 아래의 카드에서 원하는 장소를 클릭하여 더 많은 정보를 확인하세요!</p>
+            <p>매주 월요일 자정에 카드가 업데이트 됩니다!</p>
+        </div>
 
-        <div id="popup" class="popup" role="dialog" aria-labelledby="popup-title" aria-describedby="popup-description">
+        <div id="place-list" class="place-list" aria-live="polite"></div>
+
+        <!-- 팝업: 장소 정보 -->
+        <div id="popup" class="popup" role="dialog" aria-labelledby="popup-title" aria-describedby="popup-description" aria-hidden="true">
             <div class="popup-content">
-                <span class="close-btn" onclick="closePopup()">&times;</span>
-                <h2 id="popup-title"></h2>
-                <p id="popup-description"></p>
-                <p id="popup-address"></p>
-                <button id="like-button">💫낭만💫</button>
-                <p id="like-count">💫낭만💫: <span id="like-count-value">0</span>개</p>
+                <button class="close-btn" aria-label="팝업 닫기" onclick="closePopup()">&times;</button>
+                <h2 id="popup-title" class="popup-title"></h2>
+                <p id="popup-description" class="popup-description"></p>
+                <p id="popup-address" class="popup-address"></p>
+                <button id="like-button" class="like-button">💫낭만💫</button>
+                <p id="like-count" class="like-count">
+                    💫낭만💫: <span id="like-count-value">0</span>개
+                </p>
             </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
