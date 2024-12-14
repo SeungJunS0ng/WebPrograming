@@ -30,22 +30,73 @@ const places = [
         category: "풍경",
         image: "./왕송호수.png",
         likes: 0
+    },
+    {
+        name: "남산타워",
+        description: "서울 시내와 주변을 한눈에 볼 수 있는 인기 있는 관광 명소높이는 약 236.7미터로, 타워의 꼭대기까지 올라가면 서울의 전경을 360도 파노라마로 감상할 수 있다.",
+        address: "서울 남산",
+        category: "풍경",
+        image: "./남산타워.png",
+        likes: 0
+    }
+];
+
+const musicList = [
+    {
+        name: "자니",
+        artist: "프라이머리",
+        genre: "힙합(랩)"
+    },
+    {
+        name: "Don't feel sad",
+        artist: "WhiteUsedSocks",
+        genre: "인디음악"
+    },
+    {
+        name: "Don't Cry",
+        artist: "HOZIHO",
+        genre: "발라드"
+    },
+    {
+        name: "나쁜 날",
+        artist: "도후",
+        genre: "인디음악"
+    },
+    {
+        name: "너는 나를 단 한 번도 사랑한 적 없었다니까",
+        artist: "지호",
+        genre: "발라드"
+    },
+    {
+        name: "목화",
+        artist: "보수동쿨러",
+        genre: "인디음악"
+    },
+    {
+        name: "독",
+        artist: "프라이머리리",
+        genre: "힙합(랩)"
+    },
+    {
+        name: "등대",
+        artist: "하현상",
+        genre: "발라드"
     }
 ];
 
 const API_KEY = 'to3tPztQheE1LjCE+XYxxQutrDEQVVkbycZTltv7DFfIlcIzjPCBxy6pHUvzZQc8yTXpXac1XEx2r5bs0iDYzg==';
-const NX = 60; // 서울 X 좌표
-const NY = 127; // 서울 Y 좌표
+const NX = 60;
+const NY = 127;
 
 const cuteMessages = {
     good: ["오늘은 햇살 가득한 날이에요! 🌞", "맑고 푸른 하늘이 기분을 좋게 해요! 😊", "완벽한 날씨! 바깥에 나가고 싶어요! 🏞️", "하늘도 기분 좋게 웃고 있어요! 😄"],
     bad: ["구름이 잔뜩 낀 날씨네요. ☁️", "오늘은 우울한 날씨에요. 🌧️", "흐린 날씨는 무슨 일이 있었을까요? 😕", "비가 올 것 같아요. ☔"]
 };
 
-// 장소 정보 표시
+// 장소 리스트 출력
 function displayPlaces(places) {
     const placeList = document.getElementById('place-list');
-    placeList.innerHTML = '';
+    placeList.innerHTML = ''; // 기존 내용 제거
 
     places.forEach((place, index) => {
         const card = document.createElement('div');
@@ -75,17 +126,19 @@ function showPopup(place, index) {
     popup.style.display = 'flex';
 }
 
+// 좋아요 업데이트
 function updateLikes(place, index, likeCount) {
     place.likes++;
     document.getElementById(`like-count-${index}`).textContent = place.likes;
     likeCount.textContent = place.likes;
 }
 
+// 팝업 닫기
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
 }
 
-// 필터링
+// 검색 및 카테고리 필터링
 function filterPlaces() {
     const searchValue = document.getElementById('search').value.toLowerCase();
     const categoryValue = document.getElementById('category').value;
@@ -95,16 +148,32 @@ function filterPlaces() {
         (!categoryValue || place.category === categoryValue)
     );
 
-    displayPlaces(filteredPlaces);
+    displayPlaces(filteredPlaces); // 필터링된 장소들 표시
+}
+
+// 음악 리스트 출력
+function displayMusicList(musicList) {
+    const musicListContainer = document.getElementById('music-list');
+    musicListContainer.innerHTML = '';
+
+    musicList.forEach((music) => {
+        const card = document.createElement('div');
+        card.className = 'place-card';
+        card.innerHTML = `
+            <h2>${music.name}</h2>
+            <p>${music.artist} - ${music.genre}</p>
+        `;
+        musicListContainer.appendChild(card);
+    });
 }
 
 // 날씨 정보 가져오기
 async function fetchWeather() {
     const now = new Date();
-    const baseDate = now.toISOString().slice(0, 10).replace(/-/g, '');
+    const baseDate = now.toISOString().slice(0, 10).replace(/-/g, ''); // 날짜 포맷 변경
     const baseTime = now.getMinutes() < 45
         ? `${('0' + (now.getHours() - 1)).slice(-2)}30`
-        : `${('0' + now.getHours()).slice(-2)}30`;
+        : `${('0' + now.getHours()).slice(-2)}30`; // 시간 포맷 변경
 
     const params = new URLSearchParams({
         serviceKey: API_KEY,
@@ -123,7 +192,7 @@ async function fetchWeather() {
         const items = data.response?.body?.items?.item;
 
         if (items) {
-            displayWeather(items);
+            displayWeather(items); // 날씨 정보 표시
         } else {
             throw new Error('Invalid data structure');
         }
@@ -133,6 +202,7 @@ async function fetchWeather() {
     }
 }
 
+// 날씨 정보 표시
 function displayWeather(items) {
     const temperature = items.find(item => item.category === 'T1H')?.obsrValue;
     const skyCondition = items.find(item => item.category === 'SKY')?.obsrValue;
@@ -145,28 +215,33 @@ function displayWeather(items) {
         <p>상태: ${skyDescription}</p>
     `;
 
-    document.getElementById('message').innerHTML = `<p>${getRandomMessage(skyCondition === '1' ? 'good' : 'bad')}</p>`;
+    document.getElementById('message').innerHTML = `<p>${getRandomMessage(skyCondition === '1' ? 'good' : 'bad')}</p>`; // 날씨에 맞는 메시지 표시
 }
 
+// 날씨 메시지 선택
 function getRandomMessage(type) {
     const messages = cuteMessages[type];
-    return messages[Math.floor(Math.random() * messages.length)];
+    return messages[Math.floor(Math.random() * messages.length)]; // 랜덤 메시지 선택
 }
 
+// 날씨 업데이트
 async function updateWeather() {
     const updateButton = document.getElementById('updateButton');
     updateButton.disabled = true;
     updateButton.innerText = '업데이트 중...';
 
-    await fetchWeather();
+    await fetchWeather(); // 날씨 정보 갱신
 
     updateButton.disabled = false;
     updateButton.innerText = '날씨 업데이트';
 }
 
-// 초기화
-window.onload = () => {
-    displayPlaces(places);
-    document.getElementById('search').addEventListener('input', filterPlaces);
-    document.getElementById('category').addEventListener('change', filterPlaces);
+// 페이지 로드 시 실행
+window.onload = function() {
+    displayPlaces(places); // 처음엔 모든 장소 표시
+    displayMusicList(musicList); // 음악 리스트 표시
+    fetchWeather(); // 날씨 정보 표시
+
+    // 날씨 업데이트 버튼 클릭 이벤트 추가
+    document.getElementById('update-weather-button').addEventListener('click', fetchWeather);
 };

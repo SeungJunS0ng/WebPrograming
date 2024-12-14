@@ -1,11 +1,11 @@
 /* 기본 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* 기본 폰트 설정 */
     margin: 0;
     padding: 0;
-    background-color: #f0f4f8;
-    color: #333;
-    line-height: 1.6;
+    background-color: #f0f4f8; /* 배경색 */
+    color: #333; /* 글자 색 */
+    line-height: 1.6; /* 줄 간격 */
 }
 
 .description {
@@ -13,159 +13,158 @@ body {
     padding: 20px;
 }
 
-
 /* 헤더 스타일 */
 header {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #1a1a1a; /* 헤더 배경 색 */
+    color: white; /* 헤더 글자 색 */
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* 텍스트 가운데 정렬 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 */
 }
 
 .search-container {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: center; /* 가로로 정렬 */
+    gap: 10px; /* 항목 간 간격 */
     margin: 15px 0;
 }
 
 .search-container input, .search-container select {
-    padding: 12px;
-    flex: 1;
-    max-width: 300px;
-    border: 2px solid #333;
-    border-radius: 5px;
+    padding: 12px; /* 여백 */
+    flex: 1; /* 가로폭 비율 */
+    max-width: 300px; /* 최대 너비 */
+    border: 2px solid #333; /* 테두리 색 */
+    border-radius: 5px; /* 둥근 모서리 */
     font-size: 16px;
-    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s; /* 효과 */
 }
 
 input::placeholder {
-    color: #aaaaaa;
+    color: #aaaaaa; /* 플레이스홀더 색상 */
 }
 
 input:focus, select:focus {
-    border-color: #007bff;
-    background-color: #f0f8ff;
-    color: #333; /* 포커스 시 텍스트 색상 변경 */
+    border-color: #007bff; /* 포커스 시 테두리 색 */
+    background-color: #f0f8ff; /* 포커스 시 배경색 */
+    color: #333; /* 포커스 시 텍스트 색 */
 }
 
 /* 장소 목록 스타일 */
 .place-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    flex-wrap: wrap; /* 여러 줄로 감싸기 */
+    gap: 20px; /* 항목 간 간격 */
+    justify-content: center; /* 중앙 정렬 */
     padding: 20px;
 }
 
 .place-card {
-    background: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    background: #ffffff; /* 카드 배경 색 */
+    border: 1px solid #ccc; /* 카드 테두리 색 */
+    border-radius: 10px; /* 카드 모서리 둥글게 */
     margin: 10px;
     padding: 15px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
+    width: 200px; /* 카드 너비 */
+    text-align: center; /* 카드 안의 텍스트 중앙 정렬 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 카드 그림자 */
+    transition: transform 0.2s, box-shadow 0.2s; /* 효과 */
 }
 
 .place-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); /* 마우스 오버 시 확대 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 마우스 오버 시 그림자 강조 */
 }
 
 .place-card img {
-    width: 100%;
-    height: 120px;
+    width: 100%; /* 이미지 너비 */
+    height: 120px; /* 이미지 높이 */
     object-fit: contain; /* 이미지 비율 유지 */
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0; /* 이미지 상단 모서리 둥글게 */
 }
 
 /* 팝업 스타일 */
 .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    inset: 0; /* 상하좌우 모두 0 */
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명 배경 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    z-index: 1000; /* 팝업을 최상단에 위치 */
 }
 
 .popup-content {
-    background: white;
+    background: white; /* 팝업 배경 색 */
     padding: 25px;
-    border-radius: 10px;
+    border-radius: 10px; /* 모서리 둥글게 */
     text-align: center;
-    width: 90%;
-    max-width: 400px;
+    width: 90%; /* 팝업 너비 */
+    max-width: 400px; /* 최대 너비 */
     position: relative;
 }
 
 .close-btn {
-    cursor: pointer;
-    font-size: 28px;
+    cursor: pointer; /* 클릭 가능한 커서 */
+    font-size: 28px; /* 글자 크기 */
     position: absolute;
     top: 15px;
     right: 15px;
-    color: #ff0000;
-    transition: color 0.3s;
+    color: #ff0000; /* 닫기 버튼 색 */
+    transition: color 0.3s; /* 색상 변화 효과 */
 }
 
 .close-btn:hover {
-    color: #cc0000;
+    color: #cc0000; /* 마우스 오버 시 색상 변화 */
 }
 
 /* 날씨 정보 및 메시지 스타일 */
 #weather, #message {
     margin-top: 20px;
     font-size: 18px;
-    font-weight: bold;
-    text-align: center;
+    font-weight: bold; /* 글자 굵기 */
+    text-align: center; /* 중앙 정렬 */
 }
 
 /* 버튼 스타일 */
 button {
-    padding: 10px 20px;
+    padding: 10px 20px; /* 여백 */
     font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    border: none;
+    border-radius: 5px; /* 둥근 모서리 */
+    cursor: pointer; /* 클릭 가능한 커서 */
+    transition: background-color 0.3s, transform 0.2s; /* 효과 */
+    border: none; /* 테두리 없앰 */
 }
 
 button:hover {
-    transform: scale(1.03);
+    transform: scale(1.03); /* 마우스 오버 시 확대 */
 }
 
 #updateButton {
-    background-color: #28a745;
-    color: white;
+    background-color: #28a745; /* 버튼 배경 색 */
+    color: white; /* 글자 색 */
 }
 
 #updateButton:hover {
-    background-color: #218838;
+    background-color: #218838; /* 마우스 오버 시 배경 색 */
 }
 
 #updateButton:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    background-color: #ccc; /* 비활성화 상태 배경 색 */
+    cursor: not-allowed; /* 비활성화 시 커서 */
 }
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {
     .place-card {
-        width: 100%;
+        width: 100%; /* 화면 크기가 작을 때 카드 너비 100% */
     }
 
     .search-container {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column; /* 세로로 배치 */
+        gap: 10px; /* 항목 간 간격 */
     }
 
     .search-container input, .search-container select {
-        width: calc(100% - 20px);
+        width: calc(100% - 20px); /* 입력 필드 너비 100% */
     }
 }

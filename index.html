@@ -5,42 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="아름다운 공간에서 다양한 낭만 장소를 탐색하세요.">
     <title>아름다운 공간</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- 외부 스타일 시트 연결 -->
 </head>
 <body>
     <header>
-        <h1>아름다운 공간</h1>
+        <h1>아름다운 공간</h1> <!-- 페이지 제목 -->
         <div class="search-container">
-            <input type="text" id="search" class="search-input" placeholder="장소 검색..." aria-label="장소 검색">
-            <select id="category" class="search-select" aria-label="카테고리 선택">
-                <option value="">모든 낭만</option>
-                <option value="식당">식당</option>
+            <!-- 검색 입력 필드와 카테고리 선택 필드 -->
+            <input type="text" id="search" placeholder="검색" oninput="filterPlaces()" />
+            <select id="category" onchange="filterPlaces()">
+                <option value="">전체</option>
                 <option value="카페">카페</option>
+                <option value="식당">식당</option>
                 <option value="풍경">풍경</option>
             </select>
         </div>
-        <div id="weather" class="weather-info" aria-live="polite"></div>
-        <div id="message" class="message-info" aria-live="polite"></div>
-        <button id="updateButton" class="update-button" aria-label="날씨 업데이트" onclick="updateWeather()">날씨 업데이트</button>
+        <div id="weather" class="weather-info" aria-live="polite"></div> <!-- 날씨 정보 표시 -->
+        <div id="message" class="message-info" aria-live="polite"></div> <!-- 날씨에 맞는 메시지 표시 -->
+        <button id="updateButton" class="update-button" aria-label="날씨 업데이트" onclick="updateWeather()">날씨 업데이트</button> <!-- 날씨 업데이트 버튼 -->
     </header>
 
     <main>
         <div class="description">
-            <h2>운영자 추천 장소</h2>
-            <p>아름다운 공간에서 다양한 카페, 식당, 그리고 풍경을 탐험해보세요. 아래의 카드에서 원하는 장소를 클릭하여 더 많은 정보를 확인하세요!</p>
+            <h2>운영자 추천 장소</h2> <!-- 장소 설명 제목 -->
+            <p>아름다운 공간에서 다양한 카페, 식당, 그리고 풍경을 탐색해보세요. 아래의 카드에서 원하는 장소를 클릭하여 더 많은 정보를 확인하세요!</p>
+            <p>매주 월요일 자정에 카드가 업데이트 됩니다!</p> <!-- 업데이트 주기 안내 -->
+        </div>
+
+        <div id="place-list" class="place-list" aria-live="polite"></div> <!-- 추천 장소 목록 -->
+
+        <div class="description">
+            <h2>운영자 추천 음악 플레이리스트</h2> <!-- 음악 플레이리스트 제목 -->
+            <p>추천하는 음악들을 확인해보세요.</p>
             <p>매주 월요일 자정에 카드가 업데이트 됩니다!</p>
         </div>
 
-        <div id="place-list" class="place-list" aria-live="polite"></div>
+        <div id="music-list" class="place-list" aria-live="polite"></div> <!-- 추천 음악 목록 -->
 
         <!-- 팝업: 장소 정보 -->
         <div id="popup" class="popup" role="dialog" aria-labelledby="popup-title" aria-describedby="popup-description" aria-hidden="true">
             <div class="popup-content">
-                <button class="close-btn" aria-label="팝업 닫기" onclick="closePopup()">&times;</button>
-                <h2 id="popup-title" class="popup-title"></h2>
-                <p id="popup-description" class="popup-description"></p>
-                <p id="popup-address" class="popup-address"></p>
-                <button id="like-button" class="like-button">💫낭만💫</button>
+                <button class="close-btn" aria-label="팝업 닫기" onclick="closePopup()">&times;</button> <!-- 팝업 닫기 버튼 -->
+                <h2 id="popup-title" class="popup-title"></h2> <!-- 팝업 제목 -->
+                <p id="popup-description" class="popup-description"></p> <!-- 장소 설명 -->
+                <p id="popup-address" class="popup-address"></p> <!-- 장소 주소 -->
+                <button id="like-button" class="like-button">💫낭만💫</button> <!-- 좋아요 버튼 -->
                 <p id="like-count" class="like-count">
                     💫낭만💫: <span id="like-count-value">0</span>개
                 </p>
@@ -48,6 +57,6 @@
         </div>
     </main>
 
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script> <!-- 외부 JavaScript 파일 연결 -->
 </body>
 </html>
